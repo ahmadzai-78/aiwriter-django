@@ -16,3 +16,4 @@ python manage.py runserver
 
 Rendez-vous sur http://127.0.0.1:8000/ pour tester.
 # aiwriter-django
+
