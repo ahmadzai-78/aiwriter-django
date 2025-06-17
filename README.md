@@ -5,7 +5,7 @@ Application Django intégrant une génération de texte (mock ou API OpenAI) pou
 ## Installation rapide
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/ahmadzai-78/aiwriter-django.git
 cd aiwriter_project
 python -m venv venv
 source venv/bin/activate  # ou venv\Scripts\activate sous Windows
