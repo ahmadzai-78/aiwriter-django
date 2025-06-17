@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Assistant IA - Générateur de documents</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-5">
+    <h1 class="mb-4">🧠 Générateur intelligent de documents</h1>
+
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.client_name.label_tag }} {{ form.client_name }}
+        </div>
+        <div class="mb-3">
+            {{ form.service.label_tag }} {{ form.service }}
+        </div>
+        <div class="mb-3">
+            {{ form.amount.label_tag }} {{ form.amount }}
+        </div>
+        <div class="mb-3">
+            {{ form.style.label_tag }} {{ form.style }}
+        </div>
+        <button type="submit" class="btn btn-primary">Générer le texte</button>
+    </form>
+
+    {% if generated_text %}
+        <h2>📝 Texte généré :</h2>
+        <pre class="border p-3 bg-light">{{ generated_text }}</pre>
+
+        <form method="post" action="/generate-pdf/">
+            {% csrf_token %}
+            <input type="hidden" name="client_name" value="{{ form.client_name.value }}">
+            <input type="hidden" name="service" value="{{ form.service.value }}">
+            <input type="hidden" name="amount" value="{{ form.amount.value }}">
+            <input type="hidden" name="style" value="{{ form.style.value }}">
+            <input type="hidden" name="generated_text" value="{{ generated_text }}">
+            <button type="submit" class="btn btn-success mt-3">📄 Télécharger en PDF</button>
+        </form>
+    {% endif %}
+</body>
+</html>
